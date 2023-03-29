@@ -1,6 +1,7 @@
 package com.cabinvoicegeneratortest;
 
 import com.cabinvoicegenerator.CabInvoiceService;
+import com.cabinvoicegenerator.InvoiceSummary;
 import com.cabinvoicegenerator.Ride;
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,14 +27,13 @@ public class CabInvoiceServiceTest {
     }
 
     @Test
-    public void givenMultipleRides_ShouldReturnTotalFare() {
+    public void givenMultipleRides_ShouldReturnInvoiceSummary() {
         CabInvoiceService invoiceService = new CabInvoiceService();
         Ride[] rides = {new Ride(2, 5),
                 new Ride(0.1, 1)
         };
-        double fare = invoiceService.calculateFare(rides);
-        Assert.assertEquals(30, fare, 0);
+        InvoiceSummary summary = invoiceService.calculateFare(rides);
+        InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30.0);
+        Assert.assertEquals(expectedInvoiceSummary, summary);
     }
-
-
 }
