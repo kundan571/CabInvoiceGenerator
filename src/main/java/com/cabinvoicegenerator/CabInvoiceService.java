@@ -14,9 +14,11 @@ public class CabInvoiceService {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println("Welcome To Cab Invoice Generator:!!");
-        CabInvoiceService invoiceService = new CabInvoiceService();
-        System.out.println(invoiceService.calculateFare(2.0, 5));
+    public double calculateFare(Ride[] rides) {
+        double totalFare = 0;
+        for (Ride ride : rides) {
+            totalFare += this.calculateFare(ride.distance, ride.time);
+        }
+        return totalFare;
     }
 }
